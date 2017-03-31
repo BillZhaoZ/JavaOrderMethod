@@ -50,10 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         mArr = new int[]{45, 38, 65, 97, 76, 13, 27, 49};
 
-        for (int i1 : mArr) {
-            mBuffer.append(i1);
-            mBuffer.append(",");
-        }
+        dealBuffer(mArr);
 
         mSortDisplayBefore.setText("排序前：" + mBuffer);
     }
@@ -70,45 +67,41 @@ public class MainActivity extends AppCompatActivity {
 
             // 冒泡排序
             case R.id.bubble_sort:
-                mBuffer.delete(0, mBuffer.length());
                 int[] bubbleSort = mMethod.bubbleSort(mArr);
+                dealBuffer(bubbleSort);
 
-                for (int i : bubbleSort) {
-                    mBuffer.append(i);
-                    mBuffer.append(",");
-                }
-
-                mSortDisplayAfter.setText("排序后：" + mBuffer);
                 break;
 
             // 选择排序
             case R.id.choose_sort:
                 int[] chooseSort = mMethod.chooseSort(mArr);
+                dealBuffer(chooseSort);
 
-                for (int i : chooseSort) {
-                    mBuffer.append(i);
-                    mBuffer.append(",");
-                }
-
-                mSortDisplayAfter.setText("排序后：" + mBuffer);
                 break;
 
             // 插入排序
             case R.id.insert_sort:
                 int[] insertSort = mMethod.insertSort(mArr);
-
-                for (int i : insertSort) {
-                    mBuffer.append(i);
-                    mBuffer.append(",");
-                }
-
-                mSortDisplayAfter.setText("排序后：" + mBuffer);
-
+                dealBuffer(insertSort);
                 break;
 
             case R.id.half_sort:
 
                 break;
+        }
+
+        mSortDisplayAfter.setText("排序后：" + mBuffer);
+    }
+
+    /**
+     * 处理方法返回的字符串
+     *
+     * @param bubbleSort
+     */
+    private void dealBuffer(int[] bubbleSort) {
+        for (int i : bubbleSort) {
+            mBuffer.append(i);
+            mBuffer.append(",");
         }
     }
 
