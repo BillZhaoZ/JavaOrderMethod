@@ -49,9 +49,9 @@ public class MainActivity extends AppCompatActivity {
         mBuffer = new StringBuffer();
 
         mArr = new int[]{45, 38, 65, 97, 76, 13, 27, 49};
+        //String string = Arrays.toString(mArr);  // 数组转换为字符串  【45, 38, 65, 97, 76, 13, 27, 49】
 
         dealBuffer(mArr);
-
         mSortDisplayBefore.setText("排序前：" + mBuffer);
     }
 
@@ -63,10 +63,13 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.bubble_sort, R.id.choose_sort, R.id.half_sort, R.id.insert_sort})
     public void onViewClicked(View view) {
 
+        mArr = new int[]{45, 38, 65, 97, 76, 13, 27, 49};
+
         switch (view.getId()) {
 
             // 冒泡排序
             case R.id.bubble_sort:
+
                 int[] bubbleSort = mMethod.bubbleSort(mArr);
                 dealBuffer(bubbleSort);
 

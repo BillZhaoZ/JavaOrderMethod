@@ -89,19 +89,26 @@ public class SortMethod {
      */
     public int[] insertSort(int[] array) {
 
-        for (int i = 0; i < array.length; i++) {
+        int length = array.length; //数组长度
+        int j;               //当前值的位置
+        int i;               //指向j前的位置
+        int key;             //当前要进行插入排序的值
 
-            for (int j = 0; j < i; j++) {
+        //从数组的第二个位置开始遍历值
+        for (j = 1; j < length; j++) {
 
-                if (array[i] < array[j]) {
+            key = array[j];
+            i = j - 1;
 
-                    int temp = array[i];
-                    System.arraycopy(array, j, array, j + 1, i - j);
-                    array[j] = temp;
-                }
+            //a[i]比当前值大时，a[i]后移一位,空出i的位置，好让下一次循环的值后移
+            while (i >= 0 && array[i] > key) {
+                array[i + 1] = array[i]; //将a[i]值后移
+                i--;         //i前移
             }
-        }
 
+            //跳出循环(找到要插入的中间位置或已遍历到0下标)
+            array[i + 1] = key;    //将当前值插入
+        }
         return array;
     }
 
