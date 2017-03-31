@@ -124,6 +124,6 @@ public class MainActivity extends AppCompatActivity {
         mBuffer.delete(0, mBuffer.length());
         mSortDisplayAfter.setText("排序后：" + mBuffer);
 
-        Toast.makeText(this, "数据已清理！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "数据已清理!!！", Toast.LENGTH_SHORT).show();
     }
 }

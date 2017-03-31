@@ -6,10 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="10dp"
     tools:context="com.javaorder.bill.javaordermethod.MainActivity">
 
     <LinearLayout
@@ -35,6 +32,7 @@
             android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="选择算法前，请点击按钮清除数据"/>
 
     </LinearLayout>
