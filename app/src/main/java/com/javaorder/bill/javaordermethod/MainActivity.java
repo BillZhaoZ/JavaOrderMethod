@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    @OnClick({R.id.bubble_sort, R.id.choose_sort, R.id.half_sort, R.id.insert_sort})
+    @OnClick({R.id.bubble_sort, R.id.choose_sort, R.id.half_sort, R.id.insert_sort, R.id.fast_sort})
     public void onViewClicked(View view) {
 
         mArr = new int[]{45, 38, 65, 97, 76, 13, 27, 49};
@@ -88,6 +89,13 @@ public class MainActivity extends AppCompatActivity {
                 dealBuffer(insertSort);
                 break;
 
+            // 快速排序
+            case R.id.fast_sort:
+                int[] fastSort = mMethod.fastSort(mArr, 0, mArr.length - 1);
+                dealBuffer(fastSort);
+                break;
+
+            // 二分查找
             case R.id.half_sort:
 
                 break;
@@ -115,5 +123,7 @@ public class MainActivity extends AppCompatActivity {
     public void onViewClicked() {
         mBuffer.delete(0, mBuffer.length());
         mSortDisplayAfter.setText("排序后：" + mBuffer);
+
+        Toast.makeText(this, "数据已清理！", Toast.LENGTH_SHORT).show();
     }
 }

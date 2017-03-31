@@ -58,6 +58,12 @@
         android:text="插入排序!"/>
 
     <Button
+        android:id="@+id/fast_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="快速排序!"/>
+
+    <Button
         android:id="@+id/half_sort"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
