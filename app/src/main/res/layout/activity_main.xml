@@ -61,6 +61,23 @@
         android:layout_height="wrap_content"
         android:text="快速排序!"/>
 
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="待查找数组：3, 5, 11, 17, 21, 23, 28, 30, 32, 50, 64, 78, 81"/>
+
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/holo_green_light"
+        android:hint="输入要查询的元素"
+        android:padding="5dp"
+        android:textSize="14sp"/>
+
     <Button
         android:id="@+id/half_sort"
         android:layout_width="match_parent"

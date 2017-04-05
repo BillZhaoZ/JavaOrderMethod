@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +30,14 @@ public class MainActivity extends AppCompatActivity {
     TextView mSortDisplayAfter;
     @BindView(R.id.delete)
     Button mDelete;
+    @BindView(R.id.insert_sort)
+    Button mInsertSort;
+    @BindView(R.id.fast_sort)
+    Button mFastSort;
+    @BindView(R.id.et_search)
+    EditText mEtSearch;
+    @BindView(R.id.activity_main)
+    LinearLayout mActivityMain;
 
     private SortMethod mMethod;
     private int[] mArr;
@@ -97,6 +107,15 @@ public class MainActivity extends AppCompatActivity {
 
             // 二分查找
             case R.id.half_sort:
+                int[] nArr = {3, 5, 11, 17, 21, 23, 28, 30, 32, 50, 64, 78, 81};
+                int key = Integer.valueOf(mEtSearch.getText().toString());
+                int sort = mMethod.halfSort(nArr, key);
+
+                if (sort == -1) {
+                    Toast.makeText(this, "所查元素不存在", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "所查元素是数组的第" + sort + "个元素", Toast.LENGTH_LONG).show();
+                }
 
                 break;
         }
