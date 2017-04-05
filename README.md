@@ -10,6 +10,23 @@ Java排序算法（冒泡排序、选择排序、插入排序）
      * 针对所有的元素重复以上的步骤，除了最后一个。
      * 持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。
 
+      public int[] bubbleSort(int[] arr) {
+
+             for (int i = 0; i < arr.length; i++) {
+
+                 for (int j = 0; j < arr.length - 1 - i; j++) {
+
+                     if (arr[j] > arr[j + 1]) {
+
+                         // 交换位置
+                         int temp = arr[j];
+                         arr[j] = arr[j + 1];
+                         arr[j + 1] = temp;
+                     }
+                 }
+             }
+             return arr;
+         }
 
 选择排序
 
