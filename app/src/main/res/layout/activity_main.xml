@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
@@ -11,77 +11,90 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/sort_display_before"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="排序前："/>
 
-        <TextView
-            android:id="@+id/sort_display_after"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="排序后："/>
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sort_display_before"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="排序前："/>
+
+            <TextView
+                android:id="@+id/sort_display_after"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="排序后："/>
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="选择算法前，请点击按钮清除数据"/>
+
+        </LinearLayout>
 
         <Button
-            android:id="@+id/delete"
+            android:id="@+id/bubble_sort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="选择算法前，请点击按钮清除数据"/>
+            android:text="冒泡排序!"/>
+
+        <Button
+            android:id="@+id/choose_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="选择排序!"/>
+
+        <Button
+            android:id="@+id/insert_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="插入排序!"/>
+
+        <Button
+            android:id="@+id/fast_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="快速排序!"/>
+
+        <Button
+            android:id="@+id/merge_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="归并排序!"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="待查找数组：3, 5, 11, 17, 21, 23, 28, 30, 32, 50, 64, 78, 81"/>
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@android:color/holo_green_light"
+            android:hint="输入要查询的元素"
+            android:padding="5dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/half_sort"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="二分查找!"/>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/bubble_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="冒泡排序!"/>
-
-    <Button
-        android:id="@+id/choose_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="选择排序!"/>
-
-    <Button
-        android:id="@+id/insert_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="插入排序!"/>
-
-    <Button
-        android:id="@+id/fast_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="快速排序!"/>
-
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="待查找数组：3, 5, 11, 17, 21, 23, 28, 30, 32, 50, 64, 78, 81"/>
-
-    <EditText
-        android:id="@+id/et_search"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@android:color/holo_green_light"
-        android:hint="输入要查询的元素"
-        android:padding="5dp"
-        android:textSize="14sp"/>
-
-    <Button
-        android:id="@+id/half_sort"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="二分查找!"/>
-
-</LinearLayout>
+</ScrollView>

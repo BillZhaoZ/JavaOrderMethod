@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     Button mFastSort;
     @BindView(R.id.et_search)
     EditText mEtSearch;
-    @BindView(R.id.activity_main)
-    LinearLayout mActivityMain;
+    @BindView(R.id.merge_sort)
+    Button mMergeSort;
 
     private SortMethod mMethod;
     private int[] mArr;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mMethod = new SortMethod();
         mBuffer = new StringBuffer();
 
-        mArr = new int[]{45, 38, 65, 97, 76, 13, 27, 49};
+        mArr = new int[]{45, 38, 65, 97, 58, 76, 13, 27, 49, 100, 88};
         //String string = Arrays.toString(mArr);  // 数组转换为字符串  【45, 38, 65, 97, 76, 13, 27, 49】
 
         dealBuffer(mArr);
@@ -71,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
      *
      * @param view
      */
-    @OnClick({R.id.bubble_sort, R.id.choose_sort, R.id.half_sort, R.id.insert_sort, R.id.fast_sort})
+    @OnClick({R.id.bubble_sort, R.id.choose_sort, R.id.half_sort, R.id.insert_sort, R.id.fast_sort, R.id.merge_sort})
     public void onViewClicked(View view) {
 
-        mArr = new int[]{45, 38, 65, 97, 76, 13, 27, 49};
+        mArr = new int[]{45, 38, 65, 97, 58, 76, 13, 27, 49, 100, 88};
 
         switch (view.getId()) {
 
@@ -105,9 +104,15 @@ public class MainActivity extends AppCompatActivity {
                 dealBuffer(fastSort);
                 break;
 
+            // 快速排序
+            case R.id.merge_sort:
+                int[] mergeSort = mMethod.mergeSort(mArr, 0, mArr.length - 1);
+                dealBuffer(mergeSort);
+                break;
+
             // 二分查找
             case R.id.half_sort:
-                int[] nArr = {3, 5, 11, 17, 21, 23, 28, 30, 32, 50, 64, 78, 81};
+                int[] nArr = {3, 5, 11, 17, 21, 23, 30, 32, 50, 64, 78, 81};
                 int key = Integer.valueOf(mEtSearch.getText().toString());
                 // int sort = mMethod.halfSort(nArr, key);
                 int sort = mMethod.binSearch(nArr, 0, nArr.length - 1, key);
