@@ -109,12 +109,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.half_sort:
                 int[] nArr = {3, 5, 11, 17, 21, 23, 28, 30, 32, 50, 64, 78, 81};
                 int key = Integer.valueOf(mEtSearch.getText().toString());
-                int sort = mMethod.halfSort(nArr, key);
+                // int sort = mMethod.halfSort(nArr, key);
+                int sort = mMethod.binSearch(nArr, 0, nArr.length - 1, key);
 
                 if (sort == -1) {
                     Toast.makeText(this, "所查元素不存在", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(this, "所查元素是数组的第" + sort + "个元素", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "所查元素是数组下标为" + sort + "的元素", Toast.LENGTH_LONG).show();
                 }
 
                 break;

@@ -217,4 +217,31 @@ public class SortMethod {
         return -1;
     }
 
+    /**
+     * 二分查找  递归实现
+     *
+     * @param srcArray
+     * @param start
+     * @param end
+     * @param key
+     * @return
+     */
+    public int binSearch(int srcArray[], int start, int end, int key) {
+        int mid = (end - start) / 2 + start;
+
+        if (srcArray[mid] == key) {
+            return mid;
+        }
+
+        if (start >= end) {
+            return -1;
+        } else if (key > srcArray[mid]) {
+            return binSearch(srcArray, mid + 1, end, key);
+        } else if (key < srcArray[mid]) {
+            return binSearch(srcArray, start, mid - 1, key);
+        }
+
+        return -1;
+    }
+
 }
