@@ -37,6 +37,30 @@ Java排序算法（冒泡排序、选择排序、插入排序）
      * 得到从第二个数据开始，数组中最小的数，并与第二个数交换位置。
      * 一共进行n-1次比较，每次都会在剩下的无序数组中选择出一个最小的数。
 
+     public int[] chooseSort(int[] array) {
+             int arrayLength = array.length;
+
+             for (int i = 0; i < arrayLength - 1; i++) {
+                 //mix用来保存数组中最小元素的索引值
+                 int mix = i; //选择当前的数组元素作为最小值，遍历到最后，找到最小的数组元素的索引，和当前位置交换
+
+                 for (int j = i + 1; j < arrayLength; j++) {
+                     if (array[j] < array[mix]) {
+                         mix = j;
+                     }
+                 }
+
+                 //每趟最多交换一次
+                 if (mix != i) {
+                     //如果mix不等于当前的i,让最小值的和当前位置的值交换
+                     int temp = array[mix];
+                     array[mix] = array[i];
+                     array[i] = temp;
+                 }
+             }
+             return array;
+         }
+
 
 插入排序
 
@@ -48,6 +72,31 @@ Java排序算法（冒泡排序、选择排序、插入排序）
      * 值与它的前一个数值进行比较，所以外层循环是从第二个数值开始的。当前一数值比待比较数值大的情况下继续循环比较，直到找到比待比较数值小
      * 的并将待比较数值置入其后一位置，结束该次循环。
 
+      public int[] insertSort(int[] array) {
+
+             int length = array.length; //数组长度
+             int j;               //当前值的位置
+             int i;               //指向j前的位置
+             int key;             //当前要进行插入排序的值
+
+             //从数组的第二个位置开始遍历值
+             for (j = 1; j < length; j++) {
+
+                 key = array[j];
+                 i = j - 1;
+
+                 //a[i]比当前值大时，a[i]后移一位,空出i的位置，好让下一次循环的值后移
+                 while (i >= 0 && array[i] > key) {
+                     array[i + 1] = array[i]; //将a[i]值后移
+                     i--;         //i前移
+                 }
+
+                 //跳出循环(找到要插入的中间位置或已遍历到0下标)
+                 array[i + 1] = key;    //将当前值插入
+             }
+             return array;
+         }
+
 
 快速排序（冒泡排序的改进型）
 
@@ -55,6 +104,38 @@ Java排序算法（冒泡排序、选择排序、插入排序）
      * 2）通过一趟排序讲待排序的记录分割成独立的两部分，其中一部分记录的元素值均比基准元素值小。另一部分记录的 元素值比基准值大。
      * 3）此时基准元素在其排好序后的正确位置
      * 4）然后分别对这两部分记录用同样的方法继续进行排序，直到整个序列有序。
+
+     public int[] fastSort(int[] a, int low, int high) {
+
+             if (low < high) { //如果不加这个判断递归会无法退出导致堆栈溢出异常
+
+                 int middle = getMiddle(a, low, high);
+                 fastSort(a, 0, middle - 1);          //递归对低子表递归排序
+                 fastSort(a, middle + 1, high);        //递归对高子表递归排序
+             }
+
+             return a;
+         }
+
+      public int getMiddle(int[] a, int low, int high) {
+
+             int key = a[low];//基准元素，排序中会空出来一个位置
+
+             while (low < high) {
+                 while (low < high && a[high] >= key) {//从high开始找比基准小的，与low换位置  从后半部分向前扫描
+                     high--;
+                 }
+                 a[low] = a[high];
+
+                 while (low < high && a[low] <= key) {//从low开始找比基准大,放到之前high空出来的位置上  从前半部分向后扫描
+                     low++;
+                 }
+                 a[high] = a[low];
+             }
+
+             a[low] = key;//此时low=high 是基准元素的位置，也是空出来的那个位置
+             return low;
+         }
 
 
 二分查找
@@ -75,6 +156,62 @@ Java排序算法（冒泡排序、选择排序、插入排序）
           * 最后，得到结果：要么查找成功， 要么查找失败。折半查找的存储结构采用一维数组存放。 折半查找算法举例
           * 对给定数列（有序）{ 3,5,11,17,21,23,28,30,32,50,64,78,81,95,101}，按折半查找算法，查找关键字值为81的数据元素。
 
+     public int halfSort(int[] srcArray, int key) {
+
+            // 获取中间值
+            int mid = srcArray.length / 2;
+
+            // 如果所查元素等于中间值  那么返回中间值 即为所查元素
+            if (key == srcArray[mid]) {
+                return mid;
+            }
+
+            // 获取开始和结束位置
+            int start = 0;
+            int end = srcArray.length - 1;
+
+            while (start <= end) {
+                mid = (end - start) / 2 + start;
+
+                if (key < srcArray[mid]) {
+                    end = mid - 1;
+                } else if (key > srcArray[mid]) {
+                    start = mid + 1;
+                } else {
+                    return mid;
+                }
+            }
+
+            return -1;
+        }
+
+        /**
+         * 二分查找  递归实现
+         *
+         * @param srcArray
+         * @param start
+         * @param end
+         * @param key
+         * @return
+         */
+        public int binSearch(int srcArray[], int start, int end, int key) {
+            int mid = (end - start) / 2 + start;
+
+            if (srcArray[mid] == key) {
+                return mid;
+            }
+
+            if (start >= end) {
+                return -1;
+            } else if (key > srcArray[mid]) {
+                return binSearch(srcArray, mid + 1, end, key);
+            } else if (key < srcArray[mid]) {
+                return binSearch(srcArray, start, mid - 1, key);
+            }
+
+            return -1;
+        }
+
 
  归并排序
 
@@ -84,3 +221,72 @@ Java排序算法（冒泡排序、选择排序、插入排序）
       * 否则将第二个有序表中的元素a[j]复制到r[k]中，并令j和k分别加上1，如此循环下去，直到其中一个有序表取完，
       * 然后再将另一个有序表中剩余的元素复制到r中从下标k到下标t的单元。归并排序的算法我们通常用递归实现，先把待排序区间[s,t]以中点二分，
       * 接着把左边子区间排序，再把右边子区间排序，最后把左区间和右区间用一次归并操作合并成有序的区间[s,t]。
+
+
+      public int[] mergeSort(int[] a, int low, int high) {
+              int mid = (low + high) / 2;
+
+              if (low < high) {
+                  // 左边
+                  mergeSort(a, low, mid);
+
+                  // 右边
+                  mergeSort(a, mid + 1, high);
+
+                  // 左右归并
+                  merge(a, low, mid, high);
+              }
+              return a;
+          }
+
+          /**
+           * 归并排序  算法实现
+           *
+           * @param a
+           * @param low
+           * @param mid
+           * @param high
+           */
+          public static void merge(int[] a, int low, int mid, int high) {
+
+              int[] temp = new int[high - low + 1];
+              int i = low;// 左指针
+              int j = mid + 1;// 右指针
+              int k = 0;
+
+              // 把较小的数先移到新数组中
+              while (i <= mid && j <= high) {
+                  if (a[i] < a[j]) {
+                      temp[k] = a[i];
+
+                      k++;
+                      i++;
+                  } else {
+                      temp[k] = a[j];
+
+                      k++;
+                      j++;
+                  }
+              }
+
+              // 把左边剩余的数移入数组
+              while (i <= mid) {
+                  temp[k] = a[i];
+
+                  k++;
+                  i++;
+              }
+
+              // 把右边边剩余的数移入数组
+              while (j <= high) {
+                  temp[k] = a[j];
+
+                  k++;
+                  j++;
+              }
+
+              // 把新数组中的数覆盖nums数组
+              for (int k2 = 0; k2 < temp.length; k2++) {
+                  a[k2 + low] = temp[k2];
+              }
+          }
